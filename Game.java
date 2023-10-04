@@ -1,31 +1,20 @@
-package visual;
-import java.awt.Canvas;
+
+package game;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 
-/**
- *
- * @author juanp
- */
-public class Game extends Canvas implements Runnable { /* Clase game más herencia de canvas */
-    
 
-    
-    public Game(){
-        new Window(WIDTH, HEIGHT, "Geometric figures", this); 
+public class Game {
+
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+        ThisFrame frame = new ThisFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        });
+        
     }
     
-    public synchronized void start(){
-
-
 }
-    
-   
-    public void run() {
-
-    }
-    
-
-
-    
-}
-/* Primer vista de la ventana */
