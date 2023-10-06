@@ -61,10 +61,10 @@ public class GameFrame extends JFrame {
             label.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    // When a figure is clicked, switch to the next set of images
+                    
                     currentIndex = (currentIndex + 1) % figureArray.size();
-                    figurePanel.removeAll(); // Remove the existing labels
-                    figurePanel.repaint(); // Redraw the panel with the new images
+                    figurePanel.removeAll(); 
+                    figurePanel.repaint(); 
                     updateFigurePanel();
                 }
             });
