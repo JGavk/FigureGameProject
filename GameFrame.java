@@ -1,57 +1,76 @@
-
-package game;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
 package game;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
-import logic.*;
+import logic.Figure;
+import logic.GeometryGame;
 
 public class GameFrame extends JFrame {
     private JPanel figurePanel;
+    private List<List<Figure>> figureArray;
+    private int currentIndex;
+
     public GameFrame() {
-    setTitle("Geometry Game");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(1200, 800);
-    setLocationRelativeTo(null);
-    
-    // Inicializa el panel
-    figurePanel = new JPanel();
-    figurePanel.setSize(1200, 800);
-    figurePanel.setBounds(0, 110, 1200, 800);
-    figurePanel.setLayout(null);
+        setTitle("Geometry Game");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1200, 800);
+        setLocationRelativeTo(null);
 
-    GeometryGame geometryGame = new GeometryGame();
-    List<List<Figure>> figureArray = geometryGame.getFigureArray();
+        GeometryGame geometryGame = new GeometryGame();
+        figureArray = geometryGame.getFigureArray();
+        currentIndex = 0;
 
-    JPanel figurePanel = new JPanel() {
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
+        figurePanel = new JPanel();
+        figurePanel.setLayout(null);
 
-            int x = 50;
-            int y = 50;
+        List<Figure> currentFigures = figureArray.get(currentIndex);
+        for (int i = 0; i < currentFigures.size(); i++) {
+            Figure currentFigure = currentFigures.get(i);
+            JLabel label = new JLabel(currentFigure.image);
+            label.setBounds(50 + i * 150, 50, currentFigure.image.getIconWidth(), currentFigure.image.getIconHeight());
 
-            for (List<Figure> figureList : figureArray) {
-                for (Figure figure : figureList) {
-                    figure.draw(g, x, y);
-                    x += 450; // Ajusta el eje x por cada iteracion
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // Cuando se da click a una imagen se cambia al siguiente set
+                    currentIndex = (currentIndex + 1) % figureArray.size();
+                    figurePanel.removeAll(); // Remueve las imagenes existentes
+                    figurePanel.repaint(); // Redibuja las nuevas imagenes del arreglo
+                    updateFigurePanel();
                 }
-                x = 50; // Toma posicion en el eje x
-                y += 250;
-            }
+            });
+
+            figurePanel.add(label);
         }
-    };
 
-    // Añade el panel de figuras
-    add(figurePanel);
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(figurePanel, BorderLayout.CENTER);
 
-    setVisible(true);
-}
-}
-    
-    
+        setVisible(true);
+    }
+
+    private void updateFigurePanel() {
+        List<Figure> currentFigures = figureArray.get(currentIndex);
+        for (int i = 0; i < currentFigures.size(); i++) {
+            Figure currentFigure = currentFigures.get(i);
+            JLabel label = new JLabel(currentFigure.image);
+            label.setBounds(50 + i * 150, 50, currentFigure.image.getIconWidth(), currentFigure.image.getIconHeight());
+
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // When a figure is clicked, switch to the next set of images
+                    currentIndex = (currentIndex + 1) % figureArray.size();
+                    figurePanel.removeAll(); // Remove the existing labels
+                    figurePanel.repaint(); // Redraw the panel with the new images
+                    updateFigurePanel();
+                }
+            });
+
+            figurePanel.add(label);
+        }
+    }
 }
 
