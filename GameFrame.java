@@ -1,15 +1,3 @@
-package game;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.List;
-import logic.Figure;
-import logic.GeometryGame;
-import java.util.Collections;
-
-
 public class GameFrame extends JFrame {
     private JPanel figurePanel;
     private List<List<Figure>> figureArray;
@@ -28,7 +16,7 @@ public class GameFrame extends JFrame {
         figurePanel = new JPanel();
         figurePanel.setLayout(null);
 
-        int xOffset = 400; // Cordenada inicial de los Labels en x
+        int xOffset = 200; // Cordenada inicial de los Labels en x
         int xSpacing = 250; // Ajustar el espacio horizontal
 
         updateFigurePanel();
@@ -43,7 +31,7 @@ public class GameFrame extends JFrame {
         List<Figure> currentFigures = figureArray.get(currentIndex);
         Collections.shuffle(currentFigures); // Cambia las ubicaciones
 
-        int xOffset = 400; 
+        int xOffset = 200; 
         int xSpacing = 250; 
 
         for (int i = 0; i < currentFigures.size(); i++) {
