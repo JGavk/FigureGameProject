@@ -1,4 +1,5 @@
 package game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -6,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import logic.Figure;
 import logic.GeometryGame;
+import java.util.Collections;
+
 
 public class GameFrame extends JFrame {
     private JPanel figurePanel;
@@ -25,25 +28,10 @@ public class GameFrame extends JFrame {
         figurePanel = new JPanel();
         figurePanel.setLayout(null);
 
-        List<Figure> currentFigures = figureArray.get(currentIndex);
-        for (int i = 0; i < currentFigures.size(); i++) {
-            Figure currentFigure = currentFigures.get(i);
-            JLabel label = new JLabel(currentFigure.image);
-            label.setBounds(50 + i * 150, 50, currentFigure.image.getIconWidth(), currentFigure.image.getIconHeight());
+        int xOffset = 400; // Cordenada inicial de los Labels en x
+        int xSpacing = 250; // Ajustar el espacio horizontal
 
-            label.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    // Cuando se da click a una imagen se cambia al siguiente set
-                    currentIndex = (currentIndex + 1) % figureArray.size();
-                    figurePanel.removeAll(); // Remueve las imagenes existentes
-                    figurePanel.repaint(); // Redibuja las nuevas imagenes del arreglo
-                    updateFigurePanel();
-                }
-            });
-
-            figurePanel.add(label);
-        }
+        updateFigurePanel();
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(figurePanel, BorderLayout.CENTER);
@@ -53,18 +41,23 @@ public class GameFrame extends JFrame {
 
     private void updateFigurePanel() {
         List<Figure> currentFigures = figureArray.get(currentIndex);
+        Collections.shuffle(currentFigures); // Cambia las ubicaciones
+
+        int xOffset = 400; 
+        int xSpacing = 250; 
+
         for (int i = 0; i < currentFigures.size(); i++) {
             Figure currentFigure = currentFigures.get(i);
             JLabel label = new JLabel(currentFigure.image);
-            label.setBounds(50 + i * 150, 50, currentFigure.image.getIconWidth(), currentFigure.image.getIconHeight());
+            label.setBounds(xOffset + i * xSpacing, 320, currentFigure.image.getIconWidth(), currentFigure.image.getIconHeight());
 
             label.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    
+                    // Cambia de figura cuando se da clic
                     currentIndex = (currentIndex + 1) % figureArray.size();
-                    figurePanel.removeAll(); 
-                    figurePanel.repaint(); 
+                    figurePanel.removeAll(); //Remueve pantalla
+                    figurePanel.repaint(); // Pinta una nueva pantalla
                     updateFigurePanel();
                 }
             });
@@ -73,4 +66,3 @@ public class GameFrame extends JFrame {
         }
     }
 }
-
