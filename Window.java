@@ -69,17 +69,6 @@ public class ThisFrame extends JFrame {
         
         ManejadorDeEventos manejadorEventos = new ManejadorDeEventos();
         
-        btnIngresar.addActionListener(manejadorEventos);
-        btnIngresar.addActionListener(new ActionListener(){
-        
-            @Override
-            public void actionPerformed(ActionEvent e){
-                String nombre="";
-                nombre = JOptionPane.showInputDialog(rootPane, "Para empezar a jugar por favor escribe tu nombre", "Nombre de Jugador", HEIGHT);
-                String resultado = "Nombre: "+nombre;    
-            
-            }
-        });
         btnLeave.addActionListener(new ActionListener(){
         
             @Override
