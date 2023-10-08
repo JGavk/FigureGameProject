@@ -81,7 +81,7 @@ public class ThisFrame extends JFrame {
         btnInstructions.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(null,"Tenga en cuenta la figura a su izquierda para seleccionar su igual en el trio de la izquierda","Instrucciones de juego",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"HAY 2 FIGURAS IGUALES para ganar debes de darle click a cualquiera de estas","Instrucciones de juego",JOptionPane.INFORMATION_MESSAGE);
             }
         
         });
