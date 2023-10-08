@@ -42,7 +42,7 @@ public class ThisFrame extends JFrame {
         
         /* Edicion adentro */
         jpContenido = new JPanel();
-        jpContenido.setBackground(Color.YELLOW);
+        jpContenido.setBackground(new java.awt.Color(102, 0, 204));
         jpContenido.setSize(1200,800);        
         jpContenido.setBounds(0,0, 1200, 800);
         jpContenido.setLayout(null);
@@ -51,8 +51,8 @@ public class ThisFrame extends JFrame {
         
         jlMensaje = new JLabel("¡Bienvenido/a, encontremos las figuras!",SwingConstants.CENTER);
         jlMensaje.setBounds(0,20, 1220,200);
-        jlMensaje.setForeground(Color.BLUE);
-        jlMensaje.setFont(new Font("arial", Font.BOLD, 20)); 
+        jlMensaje.setForeground(new java.awt.Color(255, 255, 255));
+        jlMensaje.setFont(new Font("arial", Font.BOLD, 25)); 
         jpContenido.add(jlMensaje);
         
         btnIngresar = new JButton("Juego");
