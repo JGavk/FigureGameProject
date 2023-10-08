@@ -30,7 +30,48 @@ public class GameFrame extends JFrame {
     private void updateFigurePanel() {
         List<Figure> currentFigures = figureArray.get(currentIndex);
         Collections.shuffle(currentFigures); // Cambia las ubicaciones
-
+        btnInstructions = new JButton("Instrucción");
+        btnInstructions.setBounds(900,15, 150,35);
+        btnInstructions.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(null,"HAY 2 FIGURAS IGUALES para ganar debes de darle click a cualquiera de estas","Instrucciones de juego",JOptionPane.INFORMATION_MESSAGE);
+            }
+        
+        });
+        figurePanel.add(btnInstructions);
+        
+        btnLeave = new JButton("Salir");
+        btnLeave.setBounds(900,700, 150,35);
+        btnLeave.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String nombre="";
+                nombre = JOptionPane.showInputDialog(rootPane, "Para terminar el juego por favor escribe tu nombre", "Nombre de Jugador", HEIGHT);
+                String resultado = "Nombre: "+nombre; 
+                JOptionPane.showMessageDialog(rootPane, resultado, "Game Over", HEIGHT);
+                System.exit(0);
+                
+            }
+     
+        });
+        figurePanel.add(btnLeave);
+        
+        
+        jlPuntaje = new JLabel("0",SwingConstants.CENTER);
+        jlPuntaje.setBounds(0,40, 1220,200);
+        jlPuntaje.setForeground(Color.BLUE);
+        jlPuntaje.setFont(new Font("arial", Font.BOLD, 20)); 
+        
+        
+        figurePanel.add(jlPuntaje);
+        
+        jlTextoPuntaje = new JLabel("Puntaje: ",SwingConstants.CENTER);
+        jlTextoPuntaje.setBounds(0,20, 1220,200);
+        jlTextoPuntaje.setForeground(Color.BLUE);
+        jlTextoPuntaje.setFont(new Font("arial", Font.BOLD, 20)); 
+        figurePanel.add(jlTextoPuntaje);
         int xOffset = 200; 
         int xSpacing = 250; 
 
